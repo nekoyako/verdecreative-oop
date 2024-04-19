@@ -16,10 +16,13 @@
 <body>
   <form action="sv_login.php" method="post">
     <div class="container">
+      <div class="form-logo">
+        <a href="../index.php" class="login-title"><img src="../assets/images/verde_wide_green.png" alt="" ></a>
+          
+      </div>
       <div class="box form-box">
-        <a href="../index.php" class="login-title">
-          <span><b>Verde Creative</b></span></a><br>
-        <header>Login</header>
+        <!-- <span><b>Verde Creative</b></span></a><br> -->
+        <!-- <header>Login</header> -->
         <form action="">
           <div class="field input">
             <label for="username"></label>

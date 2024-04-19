@@ -31,7 +31,7 @@ html {
 
 body {
   font-family: sans-serif;
-  background-color: white;
+  background-color: var(--lime);
   color: var(--green);
 }
 
@@ -51,6 +51,16 @@ body {
   border-radius: 20px;
   box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
     0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container .form-logo img {
+  width: 500px;
+  /* margin: 0px 10px; */
 }
 
 .container .form-box {
@@ -88,10 +98,10 @@ body {
 
 .btn {
   height: 35px;
-  background: var(--brown);
+  background: var(--green);
   border: 0;
   border-radius: 5px;
-  color: var(--primary);
+  color: var(--lime);
   font-size: 15px;
   cursor: pointer;
   transition: all 0.3s;

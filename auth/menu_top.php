@@ -6,8 +6,8 @@ include("../php/config.php");
 $uid = $_SESSION['id'];
 
 // Mengeksekusi kueri untuk mendapatkan nama pengguna berdasarkan ID
-$sql = "SELECT username FROM tbuser WHERE id = ?";
-$stmt = $con->prepare($sql);
+$sql = "SELECT username FROM Staff WHERE id = ?";
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $uid);
 $stmt->execute();
 $stmt->bind_result($uname);

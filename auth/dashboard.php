@@ -1,7 +1,7 @@
 <?php
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
-    $query = mysqli_query($con, "SELECT * FROM tbuser WHERE id=$id");
+    $query = mysqli_query($conn, "SELECT * FROM Staff WHERE id=$id");
 
     while ($result = mysqli_fetch_assoc($query)) {
         $res_Uname = $result['username'];
