@@ -9,7 +9,7 @@
                 Form Tambah User
             </h6>
         </div>
-        <form action="../user/add/store.php" method="POST" enctype="multipart/form-data">
+        <form action="/auth/user/add/store.php" method="POST" enctype="multipart/form-data">
             <div class="card-body">
                 <!-- <div class="form-group">
                     <label>Kode:</label>
@@ -25,11 +25,11 @@
                 </div>
                 <div class="form-group">
                     <label>Masukkan Username:</label>
-                    <input type="number" class="form-control" name="username" placeholder="Masukkan Username" required />
+                    <input type="text" class="form-control" name="username" placeholder="Masukkan Username" required />
                 </div>
                 <div class="form-group">
                     <label>Password:</label>
-                    <input type="text" class="form-control" name="password" placeholder="Masukkan Password" required />
+                    <input type="password" class="form-control" name="password" placeholder="Masukkan Password" required />
                 </div>
 
             </div>

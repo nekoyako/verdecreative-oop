@@ -1,53 +1,90 @@
 <?php
 
-include("../../php/config.php");
+// Include the database configuration
+require_once(__DIR__ . "/../../php/config.php");
 
 class User
 {
+    private $conn;
 
-    public function __construct(
-        private $conn
-    ) {
+    public function __construct($conn)
+    {
+        $this->conn = $conn;
     }
 
     public function index()
     {
-        $result = $this->conn->query("SELECT * FROM user");
-    
+        // Fetch all users from the staff table
+        $query = "SELECT * FROM staff";
+        $result = $this->conn->query($query);
+
         if (!$result) {
-            // Query execution failed
-            throw new Exception("Error executing query: " . $this->conn->error);
+            throw new Exception("Error retrieving users: " . $this->conn->error);
         }
-    
+
         return $result;
     }
 
-    public function store(array $newUser)
+    public function store($newUser)
     {
-        $queryStore = $this->conn->prepare("insert into user(id, name, position, username, password) values(?, ?, ?, ?, ?)");
-        $queryStore->bind_param("sssss", $newUser['id'], $newUser['name'], $newUser["position"], $newUser["username"], $newUser["password"]); // isi sendiri
+        // Prepare and execute an INSERT query to add a new user to the staff table
+        $query = "INSERT INTO staff (id, name, position, username, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
 
-        return $queryStore->execute();
+        if (!$stmt) {
+            throw new Exception("Error preparing query: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("sssss", $newUser['id'], $newUser['name'], $newUser['position'], $newUser['username'], $newUser['password']);
+        $success = $stmt->execute();
+
+        if (!$success) {
+            throw new Exception("Error inserting new user: " . $stmt->error);
+        }
+
+        return $success;
     }
-    
 
     public function getById($id)
     {
-        $query = $this->conn->prepare("SELECT * FROM user WHERE id = ?");
-        $query->bind_param("i", $id);
-        $query->execute();
-        $result = $query->get_result();
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc();
-        } else {
-            return null;
+        // Retrieve a user by ID from the staff table
+        $query = "SELECT * FROM staff WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            throw new Exception("Error preparing query: " . $this->conn->error);
         }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+
+        if (!$user) {
+            return null; // User not found
+        }
+
+        return $user;
     }
 
-    public function update(array $updatedUser)
+    public function update($updatedUser)
     {
-        $query = $this->conn->prepare("UPDATE user SET id=?, name=?, position=?, username=?, password=? WHERE id=?");
-        $query->bind_param("sssssi", $updatedUser['id'], $updatedUser['name'], $updatedUser["position"], $updatedUser["username"], $updatedUser["password"], $updatedUser["id"]);
-        return $query->execute();
+        // Update an existing user in the staff table
+        $query = "UPDATE staff SET name = ?, position = ?, username = ?, password = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            throw new Exception("Error preparing query: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("ssssi", $updatedUser['name'], $updatedUser['position'], $updatedUser['username'], $updatedUser['password'], $updatedUser['id']);
+        $success = $stmt->execute();
+
+        if (!$success) {
+            throw new Exception("Error updating user: " . $stmt->error);
+        }
+
+        return $success;
     }
 }
