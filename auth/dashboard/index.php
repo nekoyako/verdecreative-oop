@@ -69,6 +69,8 @@ include("../../php/config.php");
                     include "../user/index.php";
                 } else if ($menu == "product") {
                     include "../product/index.php";
+                } else if ($menu == "transaction") {
+                    include "../transaction/index.php";
                 } else {
                     include "blank_page.php";
                 }
