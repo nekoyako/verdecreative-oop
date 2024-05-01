@@ -39,7 +39,7 @@ if ($action == "add") {
                                 <th width="10">No</th>
                                 <th width="10">Nama Bisnis</th>
                                 <th width="100">No Invoice</th>
-                                <th width="100">Tanggal Mulai </th>
+                                <th width="100">Tanggal Mulai</th>
                                 <th width="100">Tanggal Selesai</th>
                                 <th width="100">Tanggal Invoice</th>
                                 <th width="100">Discount</th>
@@ -52,12 +52,15 @@ if ($action == "add") {
                             <?php
                             $result = $transaction->index();
                             $no = 1;
+                            $invoiceNumber = '001';
                             ?>
                             <?php while ($row = $result->fetch_assoc()) : ?>
                                 <tr>
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo $row["business"]; ?></td>
-                                    <td><?php echo $row["invoiceNumber"]; ?></td>
+                                    <td><?php echo 'INVOICE #' . str_pad($invoiceNumber, 3, '0', STR_PAD_LEFT); ?></td>
+                                    <?php $invoiceNumber++; 
+                                    ?>
                                     <td><?php echo $row["startDate"]; ?></td>
                                     <td><?php echo $row["endDate"]; ?></td>
                                     <td><?php echo $row["invoiceDate"]; ?></td>

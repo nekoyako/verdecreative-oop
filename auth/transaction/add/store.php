@@ -8,7 +8,7 @@ include("../../models/Transaction.php");
 $transaction = new Transaction($conn);
 $transaction->store([
     'business' => $_POST['business'],
-    'invoiceNumber' => $_POST['invoiceNumber'],
+    // 'invoiceNumber' => $_POST['invoiceNumber'],
     'startDate' => $_POST['startDate'],
     'endDate' => $_POST['endDate'],
     'invoiceDate' => $_POST['invoiceDate'],
