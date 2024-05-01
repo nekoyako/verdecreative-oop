@@ -28,7 +28,7 @@ if(isset($_GET['id'])) {
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-custom" style="color:black">Form Edit Pelanggan</h6>
         </div>
-        <form action="../client/edit/updated.php" method="POST"> 
+        <form action="/auth/client/edit/updated.php" method="POST"> 
             <div class="card-body">
                 <div class="form-group">
                     <label>Kode:</label>
@@ -55,7 +55,7 @@ if(isset($_GET['id'])) {
                 <button type="submit" class="btn" style="color: white; background: navy">
                     <i class="fas fa-save"></i> Simpan
                 </button>
-                <a href="../../auth/dashboard/?menu=client" class="btn" style="color: white; background: orange">
+                <a href="/auth/dashboard/?menu=client" class="btn" style="color: white; background: orange">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>
