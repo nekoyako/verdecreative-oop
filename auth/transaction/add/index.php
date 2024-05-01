@@ -45,9 +45,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <?php include "../transaction/detail/index.php"; ?>
-                </div>
+                <!-- <div class="card-body"> -->
+                    <?php 
+                    // include "../transaction/detail/index.php"; 
+                    ?>
+                <!-- </div> -->
             </div>
 
             <div class="card-footer">
