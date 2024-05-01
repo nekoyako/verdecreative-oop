@@ -9,7 +9,7 @@
                 Form Tambah Pelanggan
             </h6>
         </div>
-        <form action="/auth/client/add/store.php" method="POST" enctype="multipart/form-data">
+        <form action="../client/add/store.php" method="POST" enctype="multipart/form-data">
             <div class="card-body">
                 <div class="form-group">
                     <label>Kode:</label>

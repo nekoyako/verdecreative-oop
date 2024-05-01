@@ -15,5 +15,6 @@ $client->store([
 ]);
 
 // redirect to client index
-header("Location: /auth/dashboard/?menu=client");
+// header("Location: ../auth/dashboard/?menu=client");
+header("Location: ../../dashboard/?menu=client");
 exit; 
