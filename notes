@@ -8,7 +8,8 @@ CREATE TABLE `client` (
     name VARCHAR(50),
     contactPerson VARCHAR(50),
     phone VARCHAR(14),
-    address VARCHAR(100)
+    address VARCHAR(100),
+PRIMARY KEY (id)
 );
 
 
