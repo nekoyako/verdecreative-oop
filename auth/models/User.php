@@ -27,15 +27,18 @@ class User
 
     public function store($newUser)
     {
+        // Hash the password using md5
+        $newUser['password'] = md5($newUser['password']);
+
         // Prepare and execute an INSERT query to add a new user to the staff table
-        $query = "INSERT INTO staff (id, name, position, username, password) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO staff (name, position, username, password) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
 
         if (!$stmt) {
             throw new Exception("Error preparing query: " . $this->conn->error);
         }
 
-        $stmt->bind_param("sssss", $newUser['id'], $newUser['name'], $newUser['position'], $newUser['username'], $newUser['password']);
+        $stmt->bind_param("ssss", $newUser['name'], $newUser['position'], $newUser['username'], $newUser['password']);
         $success = $stmt->execute();
 
         if (!$success) {
@@ -77,6 +80,9 @@ class User
         if (!$stmt) {
             throw new Exception("Error preparing query: " . $this->conn->error);
         }
+
+        // Hash the updated password using md5
+        $updatedUser['password'] = md5($updatedUser['password']);
 
         $stmt->bind_param("ssssi", $updatedUser['name'], $updatedUser['position'], $updatedUser['username'], $updatedUser['password'], $updatedUser['id']);
         $success = $stmt->execute();
