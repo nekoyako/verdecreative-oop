@@ -8,12 +8,12 @@ include("../../models/Transaction.php");
 $transaction = new Transaction($conn);
 $transaction->store([
     'business' => $_POST['business'],
-    'invoicenumber' => $_POST['invoicenumber'],
-    'startdate' => $_POST['startdate'],
-    'enddate' => $_POST['enddate'],
-    'invoicedate' => $_POST['invoicedate'],
+    'invoiceNumber' => $_POST['invoiceNumber'],
+    'startDate' => $_POST['startDate'],
+    'endDate' => $_POST['endDate'],
+    'invoiceDate' => $_POST['invoiceDate'],
     'discount' => $_POST['discount'],
-    'downpayment' => $_POST['downpayment'],
+    'downPayment' => $_POST['downPayment'],
 ]);
 
 // redirect to transaction index

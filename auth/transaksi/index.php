@@ -37,11 +37,13 @@ if ($action == "add") {
                         <thead>
                             <tr>
                                 <th width="10">No</th>
-                                <th width="10">Kode</th>
-                                <th width="100">Nama Perusahaan</th>
-                                <th width="100">Nama PJ</th>
-                                <th width="100">No HP</th>
-                                <th width="100">Alamat</th>
+                                <th width="10">Nama Bisnis</th>
+                                <th width="100">No Invoice</th>
+                                <th width="100">Tanggal Mulai </th>
+                                <th width="100">Tanggal Selesai</th>
+                                <th width="100">Tanggal Invoice</th>
+                                <th width="100">Discount</th>
+                                <th width="100">Down Payment</th>
                                 <th width="100">Action</th>
                             </tr>
                         </thead>
@@ -54,11 +56,14 @@ if ($action == "add") {
                             <?php while ($row = $result->fetch_assoc()) : ?>
                                 <tr>
                                     <td><?php echo $no++; ?></td>
-                                    <td><?php echo $row["code"]; ?></td>
-                                    <td><?php echo $row["name"]; ?></td>
-                                    <td><?php echo $row["contactPerson"]; ?></td>
-                                    <td><?php echo $row["phone"]; ?></td>
-                                    <td><?php echo $row["address"]; ?></td>
+                                    <td><?php echo $row["business"]; ?></td>
+                                    <td><?php echo $row["invoiceNumber"]; ?></td>
+                                    <td><?php echo $row["startDate"]; ?></td>
+                                    <td><?php echo $row["endDate"]; ?></td>
+                                    <td><?php echo $row["invoiceDate"]; ?></td>
+                                    <td><?php echo $row["discount"]; ?></td>
+                                    <td><?php echo $row["downPayment"]; ?></td>
+
                                     <td>
                                         <a href="?menu=transaction&action=edit&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #466d1d">
                                             <i class="fas fa-edit"></i>

@@ -34,3 +34,16 @@ CREATE TABLE `product` (
     price DECIMAL(14),
 PRIMARY KEY (id)
 );
+
+-- create table transaction
+CREATE TABLE `transaction` (
+    id INT(11) UNSIGNED AUTO_INCREMENT,
+    business VARCHAR(50),
+    invoiceNumber INT(11),
+    startDate DATE,
+    endDate DATE,
+    invoiceDate DATE,
+    discount DECIMAL(14),
+    downPayment DECIMAL(14),
+PRIMARY KEY (id)
+);

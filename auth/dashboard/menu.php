@@ -33,7 +33,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="?menu=user">User</a>
                 <a class="collapse-item" href="?menu=client">Pelanggan</a>
-                <a class="collapse-item" href="?menu=client">Transaksi</a>
+                <a class="collapse-item" href="?menu=transaction">Transaksi</a>
                 <a class="collapse-item" href="?menu=product">Produk</a>
             </div>
         </div>

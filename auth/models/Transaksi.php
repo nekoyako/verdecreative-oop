@@ -19,8 +19,8 @@ class Transaction
 
     public function store(array $newTransaction)
     {
-        $queryStore = $this->conn->prepare("insert into transaction(code, name, contactPerson, phone, address) values(?, ?, ?, ?, ?)");
-        $queryStore->bind_param("sssss", $newTransaction['code'], $newTransaction['name'], $newTransaction["contactPerson"], $newTransaction["phone"], $newTransaction["address"]); // isi sendiri
+        $queryStore = $this->conn->prepare("insert into transaction(business, invoiceNumber, startDate, endDate, invoiceDate, discount, downPayment) values(?, ?, ?, ?, ?, ?, ?)");
+        $queryStore->bind_param("sssssss", $newTransaction['business'], $newTransaction['invoiceNumber'], $newTransaction["startDate"], $newTransaction["endDate"], $newTransaction["invoiceDate"], $newTransaction["discount"], $newTransaction["downPayment"]); // isi sendiri
 
         return $queryStore->execute();
     }
@@ -41,8 +41,8 @@ class Transaction
 
     public function update(array $updatedTransaction)
     {
-        $query = $this->conn->prepare("UPDATE transaction SET code=?, name=?, contactPerson=?, phone=?, address=? WHERE id=?");
-        $query->bind_param("sssssi", $updatedTransaction['code'], $updatedTransaction['name'], $updatedTransaction["contactPerson"], $updatedTransaction["phone"], $updatedTransaction["address"], $updatedTransaction["id"]);
+        $query = $this->conn->prepare("UPDATE transaction SET business=?, invoiceNumber=?, startDate=?, endDate=?, invoiceDate=? discount=? downPayment=? WHERE id=?");
+        $query->bind_param("sssssssi", $updatedTransaction['business'], $updatedTransaction['invoiceNumber'], $updatedTransaction["startDate"], $updatedTransaction["endDate"], $updatedTransaction["invoiceDate"], $updatedTransaction["discount"], $updatedTransaction["downPayment"]);
         return $query->execute();
     }
 }

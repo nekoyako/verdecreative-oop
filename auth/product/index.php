@@ -40,7 +40,7 @@ if ($action == "add") {
                                 <th width="10">Item</th>
                                 <th width="100">Paket</th>
                                 <th width="100">Harga</th>
-                                                            <th width="100">Action</th>
+                                <th width="100">Action</th>
                             </tr>
                         </thead>
                         <tbody>
