@@ -1,23 +1,36 @@
 <?php
-include "../../../php/config.php";
-$id = mysqli_real_escape_string($conn, $_POST['id']);
-$code = mysqli_real_escape_string($conn, $_POST['code']);
-$name = mysqli_real_escape_string($conn, $_POST['name']);
-$contactPerson = mysqli_real_escape_string($conn, $_POST['contactPerson']);
-$phone = mysqli_real_escape_string($conn, $_POST['phone']);
-$address = mysqli_real_escape_string($conn, $_POST['address']);
+include("../../../php/config.php");
 
-$sql = "UPDATE client SET code='$code',
-								name='$name',
-								contactPerson='$contactPerson',
-								phone='$phone',
-								address='$address'
-								WHERE id='$id'";
-$query = mysqli_query($conn, $sql);
+// Retrieve and sanitize POST data
+$id = $_POST['id'];
+$name = $_POST['name'];
+$position = $_POST['position'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
+// Update query with prepared statement
+$sql = "UPDATE staff SET 
+        name = ?, 
+        position = ?, 
+        username = ?, 
+        password = ?
+        WHERE id = ?";
 
-$url = "/auth/dashboard/?menu=client";
-$pesan = "Successfully Edited";
+$stmt = mysqli_prepare($conn, $sql);
+if ($stmt) {
+    mysqli_stmt_bind_param($stmt, "ssssi", $name, $position, $username, $password, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 
-echo "<script>alert('$pesan'); location='$url'; </script>";
+    // Redirect back to client dashboard after update
+    $url = "/auth/dashboard/?menu=user";
+    $pesan = "Successfully Edited";
+    echo "<script>alert('$pesan'); window.location='$url'; </script>";
+} else {
+    // Handle error if prepare statement fails
+    $pesan = "Failed to update data";
+    echo "<script>alert('$pesan'); window.history.back(); </script>";
+}
+
+mysqli_close($conn);
 ?>

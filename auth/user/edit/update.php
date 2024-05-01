@@ -1,29 +1,28 @@
 <?php
 include("../../../php/config.php");
-include("../../models/Client.php");
+include("../../models/User.php");
 
-// Pastikan $id didefinisikan dengan benar, misalnya dari URL
+// Retrieve ID from the URL query string
 $id = isset($_GET['id']) ? $_GET['id'] : "";
 
-// Pastikan $client diinstansiasi sebelum digunakan
-$client = new Client($conn);
+// Instantiate Client object with database connection
+$user = new User($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Proses penyimpanan perubahan data
-    $updateClient = [
-        'id' => $id, // Pastikan $id sudah didefinisikan
-        'code' => $_POST['code'],
+    // Prepare data to be updated
+    $updateUser = [
+        'id' => $id,
         'name' => $_POST['name'],
-        'contactPerson' => $_POST['contactPerson'],
-        'phone' => $_POST['phone'],
-        'address' => $_POST['address'],
+        'position' => $_POST['position'],
+        'username' => $_POST['username'],
+        'password' => $_POST['password'],
     ];
     
-    // Pastikan $client sudah didefinisikan sebelum memanggil metode update()
-    $client->update($updateClient);
+    // Perform the update operation
+    $user->update($updateUser);
 
-    // Redirect kembali ke halaman index setelah update
-    header("Location: /auth/dashboard/?menu=client");
+    // Redirect back to client dashboard after update
+    header("Location: /auth/dashboard/?menu=user");
     exit;
 }
 ?>
