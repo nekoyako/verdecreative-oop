@@ -65,8 +65,8 @@ include("../../php/config.php");
                     include "dashboard.php";
                 } else if ($menu == "client") {
                     include "../client/index.php";
-                } else if ($menu == "product") {
-                    include "product/product.php";
+                } else if ($menu == "user") {
+                    include "../user/index.php";
                 } else if ($menu == "cat") {
                     include "categories/cat.php";
                 } else {
