@@ -1,8 +1,8 @@
 <?php
 include("../../php/config.php");
-// include("../models/Client.php");
+// include("../models/Product.php");
 
-// $client = new Product($conn);
+// $product = new Product($conn);
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];

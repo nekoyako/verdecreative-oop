@@ -1,22 +1,18 @@
 <?php
 include "../../../php/config.php";
 $id = mysqli_real_escape_string($conn, $_POST['id']);
-$code = mysqli_real_escape_string($conn, $_POST['code']);
-$name = mysqli_real_escape_string($conn, $_POST['name']);
-$contactPerson = mysqli_real_escape_string($conn, $_POST['contactPerson']);
-$phone = mysqli_real_escape_string($conn, $_POST['phone']);
-$address = mysqli_real_escape_string($conn, $_POST['address']);
+$item = mysqli_real_escape_string($conn, $_POST['item']);
+$package = mysqli_real_escape_string($conn, $_POST['package']);
+$price = mysqli_real_escape_string($conn, $_POST['price']);
 
-$sql = "UPDATE client SET code='$code',
-								name='$name',
-								contactPerson='$contactPerson',
-								phone='$phone',
-								address='$address'
+$sql = "UPDATE product SET item='$item',
+								package='$package',
+								price='$price',
 								WHERE id='$id'";
 $query = mysqli_query($conn, $sql);
 
 
-$url = "/auth/dashboard/?menu=client";
+$url = "/auth/dashboard/?menu=product";
 $pesan = "Successfully Edited";
 
 echo "<script>alert('$pesan'); location='$url'; </script>";

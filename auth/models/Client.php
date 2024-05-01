@@ -1,6 +1,7 @@
 <?php
 
-include("../../php/config.php");
+if (!class_exists('Client')) {
+    include("../../php/config.php");
 
 class Client
 {
@@ -45,4 +46,5 @@ class Client
         $query->bind_param("sssssi", $updatedClient['code'], $updatedClient['name'], $updatedClient["contactPerson"], $updatedClient["phone"], $updatedClient["address"], $updatedClient["id"]);
         return $query->execute();
     }
+}
 }
