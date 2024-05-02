@@ -93,4 +93,25 @@ class User
 
         return $success;
     }
+
+    public function deleteUser($id)
+{
+    // Delete a user from the staff table
+    $query = "DELETE FROM staff WHERE id = ?";
+    $stmt = $this->conn->prepare($query);
+
+    if (!$stmt) {
+        throw new Exception("Error preparing query: " . $this->conn->error);
+    }
+
+    $stmt->bind_param("i", $id);
+    $success = $stmt->execute();
+
+    if (!$success) {
+        throw new Exception("Error deleting user: " . $stmt->error);
+    }
+
+    return $success;
+}
+
 }

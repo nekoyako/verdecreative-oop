@@ -13,13 +13,15 @@ try {
         include "add/index.php";
     } else if ($action == "edit") {
         include "edit/index.php";
+    } else if ($action == "delete") {
+        include "delete/index.php";
     } else {
         // Display the user management interface
         ?>
 
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-primary" style="color: black;">Manajemen User</h1>
+            <h1 class="h3 mb-2 text-primaryx" style="color:black" ;>Manajemen User</h1>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">

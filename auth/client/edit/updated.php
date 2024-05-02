@@ -1,60 +1,38 @@
 <?php
-include "../../../php/config.php";
+include("../../../php/config.php");
 
-$id = mysqli_real_escape_string($conn, $_POST['id']);
-$code = mysqli_real_escape_string($conn, $_POST['code']);
-$name = mysqli_real_escape_string($conn, $_POST['name']);
-$contactPerson = mysqli_real_escape_string($conn, $_POST['contactPerson']);
-$phone = mysqli_real_escape_string($conn, $_POST['phone']);
-$address = mysqli_real_escape_string($conn, $_POST['address']);
+// Check if all required fields are present
+    // Retrieve and sanitize POST data
+    $id = $_POST['id'];
+    $code = $_POST['code'];
+    $name = $_POST['name'];
+    $contactPerson = $_POST['contactPerson'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
 
-$sql = "UPDATE client SET code='$code',
-								name='$name',
-								contactPerson='$contactPerson',
-								phone='$phone',
-								address='$address'
-								WHERE id='$id'";
-$query = mysqli_query($conn, $sql);
+    // Update query with prepared statement
+    $sql = "UPDATE client SET 
+            code = ?,
+            name = ?, 
+            contactPerson = ?, 
+            phone = ?, 
+            address = ?
+            WHERE id = ?";
 
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "sssssi", $code, $name, $contactPerson, $phone, $address, $id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
 
-$url = "/auth/dashboard/?menu=client";
-$pesan = "Successfully Edited";
-
-echo "<script>alert('$pesan'); location='$url'; </script>";
-?>
-
-<!-- <?php
-include "../../../php/config.php";
-
-// Check if all required fields are set
-if(isset($_POST['id'], $_POST['code'], $_POST['name'], $_POST['contactPerson'], $_POST['phone'], $_POST['address'])) {
-    // Sanitize input
-    $id = mysqli_real_escape_string($conn, $_POST['id']);
-    $code = mysqli_real_escape_string($conn, $_POST['code']);
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $contactPerson = mysqli_real_escape_string($conn, $_POST['contactPerson']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
-
-    // Check if update was successful
-    if ($stmt->affected_rows > 0) {
-        // Redirect to client dashboard with success message
+        // Redirect back to client dashboard after update
         $url = "/auth/dashboard/?menu=client";
         $pesan = "Successfully Edited";
-        echo "<script>alert('$pesan'); location.href='$url'; </script>";
-        exit; // Prevent further execution
+        echo "<script>alert('$pesan'); window.location='$url'; </script>";
     } else {
-        // Display error message if update fails
-        echo "<script>alert('Failed to update client information.');</script>";
+        // Handle error if prepare statement fails
+        $pesan = "Failed to update data";
+        echo "<script>alert('$pesan'); window.history.back(); </script>";
     }
-
-    // Close prepared statement
-    $stmt->close();
-} else {
-    // Display error message if required fields are not set
-    echo "<script>alert('All fields are required.');</script>";
-}
-
-// Close database connection
-$conn->close();
-?> -->
+mysqli_close($conn);
+?>

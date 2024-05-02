@@ -1,7 +1,8 @@
 <?php
 
 // Include the database configuration
-require_once(__DIR__ . "/../../php/config.php");
+if (!class_exists('Product')) {
+    include("../../php/config.php");
 
 class Product
 {
@@ -87,4 +88,22 @@ class Product
 
         return $success;
     }
-}
+
+    public function deleteProduct($id)
+{
+    $query = "DELETE FROM product WHERE id = ?";
+    $stmt = $this->conn->prepare($query);
+
+    if (!$stmt) {
+        throw new Exception("Error preparing query: " . $this->conn->error);
+    }
+
+    $stmt->bind_param("i", $id);
+    $success = $stmt->execute();
+
+    if (!$success) {
+        throw new Exception("Error deleting product: " . $stmt->error);
+    }
+
+    return $success;
+}}}

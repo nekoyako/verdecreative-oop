@@ -9,6 +9,8 @@ if ($action == "add") {
     include "add/index.php";
 } else if ($action == "edit") {
     include "edit/index.php";
+} else if ($action == "delete") {
+    include "delete/index.php";
 } else {
 ?>
 
@@ -55,10 +57,10 @@ if ($action == "add") {
                                     <td><?php echo $row["package"]; ?></td>
                                     <td><?php echo $row["price"]; ?></td>
                                                                         <td>
-                                        <a href="?menu=client&action=edit&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #466d1d">
+                                        <a href="?menu=product&action=edit&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #466d1d">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="?menu=client&action=delete&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #c01605" onclick="return confirm('Do you want to delete this?')">
+                                        <a href="?menu=product&action=delete&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #c01605" onclick="return confirm('Do you want to delete this?')">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>

@@ -40,11 +40,46 @@ class Client
         }
     }
 
-    public function update(array $updatedClient)
+    public function update($updatedClient)
     {
-        $query = $this->conn->prepare("UPDATE client SET code=?, name=?, contactPerson=?, phone=?, address=? WHERE id=?");
-        $query->bind_param("sssssi", $updatedClient['code'], $updatedClient['name'], $updatedClient["contactPerson"], $updatedClient["phone"], $updatedClient["address"], $updatedClient["id"]);
-        return $query->execute();
+        // Update an existing user in the staff table
+        $query = "UPDATE client SET code = ?, name = ?, contactPerson = ?, phone = ?, address = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            throw new Exception("Error preparing query: " . $this->conn->error);
+        }
+
+        $stmt->bind_param("sssssi", $updatedClient['code'], $updatedClient['name'], $updatedClient['contactPerson'], $updatedClient['phone'], $updatedClient['address'], $updatedClient['id']);
+        $success = $stmt->execute();
+
+        if (!$success) {
+            throw new Exception("Error updating client: " . $stmt->error);
+        }
+
+        return $success;
     }
+
+
+    public function deleteClient($id)
+{
+    // Delete a client from the staff table
+    $query = "DELETE FROM client WHERE id = ?";
+    $stmt = $this->conn->prepare($query);
+
+    if (!$stmt) {
+        throw new Exception("Error preparing query: " . $this->conn->error);
+    }
+
+    $stmt->bind_param("i", $id);
+    $success = $stmt->execute();
+
+    if (!$success) {
+        throw new Exception("Error deleting user: " . $stmt->error);
+    }
+
+    return $success;
+}
+
 }
 }

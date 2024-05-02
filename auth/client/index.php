@@ -9,6 +9,8 @@ if ($action == "add") {
     include "add/index.php";
 } else if ($action == "edit") {
     include "edit/index.php";
+} else if ($action == "delete") {
+    include "delete/index.php";
 } else {
 ?>
 

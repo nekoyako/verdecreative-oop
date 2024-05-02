@@ -1,24 +1,22 @@
 <?php
 include("../../php/config.php");
-// include("../models/Client.php");
 
-// $client = new Client($conn);
-
+// Check if ID is provided via GET parameter
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
+    // Fetch user data based on the ID
     $userData = $user->getById($id);
+
     if(!$userData) {
-        // Handle jika data tidak ditemukan
+        // Handle if user data not found
         echo "Data tidak ditemukan";
         exit;
     }
 } else {
-    // Handle jika parameter id tidak ada
+    // Handle if ID parameter is missing
     echo "ID tidak ditemukan";
     exit;
 }
-
-
 ?>
 
 <div class="container-fluid">
@@ -30,25 +28,22 @@ if(isset($_GET['id'])) {
         </div>
         <form action="../user/edit/updated.php" method="POST"> 
             <div class="card-body">
+                <input type="hidden" name="id" value="<?php echo $userData['id']; ?>" />
                 <div class="form-group">
-                    <label>Kode:</label>
-                    <input type="text" class="form-control" name="code" value="<?php echo $userData['id']; ?>" required />
-                </div>
-                <div class="form-group">
-                    <label>Nama Perusahaan:</label>
+                    <label>Nama:</label>
                     <input type="text" class="form-control" name="name" value="<?php echo $userData['name']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>Nama Penanggung Jawab:</label>
+                    <label>Jabatan:</label>
                     <input type="text" class="form-control" name="position" value="<?php echo $userData['position']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>No Telepon:</label>
-                    <input type="number" class="form-control" name="username" value="<?php echo $userData['username']; ?>" required />
+                    <label>Username:</label>
+                    <input type="text" class="form-control" name="username" value="<?php echo $userData['username']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>Alamat:</label>
-                    <input type="text" class="form-control" name="password" value="<?php echo $userData['password']; ?>" required />
+                    <label>Password:<sup class="text-danger">Kosongkan jika tidak mengubah password</sup></label> 
+                    <input type="password" class="form-control" placeholder="Masukan password" name="password" >
                 </div>
             </div>
             <div class="card-footer">
