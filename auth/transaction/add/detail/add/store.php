@@ -1,7 +1,7 @@
 <?php
 
-include("../../../../php/config.php");
-include("../../../models/Transaction.php");
+include("../../../../../php/config.php");
+include("../../../../models/TransactionDetail.php");
 
 // get form data
 
