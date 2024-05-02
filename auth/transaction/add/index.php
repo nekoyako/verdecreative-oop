@@ -52,15 +52,15 @@
                         <!-- <div>---</div> -->
                         <div class="form-group">
                             <label>Nama Item:</label>
-                            <input type="text" class="form-control" name="itemName[]" placeholder="Masukkan Nama Item" required />
+                            <input type="text" class="form-control" name="itemName[]" placeholder="Masukkan Nama Item" />
                         </div>
                         <div class="form-group">
                             <label>Nama Paket:</label>
-                            <input type="text" class="form-control" name="packageName[]" placeholder="Masukkan Nama Paket" required />
+                            <input type="text" class="form-control" name="packageName[]" placeholder="Masukkan Nama Paket" />
                         </div>
                         <div class="form-group">
                             <label>Kuantitas:</label>
-                            <input type="number" class="form-control" name="quantity[]" placeholder="Masukkan Kuantitas" required />
+                            <input type="number" class="form-control" name="quantity[]" placeholder="Masukkan Kuantitas" />
                         </div>
                     </div>
                     <button type="button" id="add-form" class="btn btn-primary">Tambah</button>
