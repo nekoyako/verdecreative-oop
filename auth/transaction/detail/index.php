@@ -1,3 +1,25 @@
+<?php
+include("../../php/config.php");
+include("../models/TransactionDetail.php");
+
+$transactionDetail = new TransactionDetail($conn);
+
+$action = isset($_GET['action']) ? $_GET['action'] : "";
+if ($action == "add") {
+    include "add/index.php";
+} else if ($action == "edit") {
+    include "edit/index.php";
+} else {
+
+// $action = isset($_GET['action']) ? $_GET['action'] : "";
+// $detailAction = isset($_GET['detail']) ? $_GET['detail'] : "";
+
+// if ($action == "add" && $detailAction == "add") {
+//     include "../detail/add/index.php";
+// } else if ($action == "edit" && $detailAction == "edit") {
+//     include "../detail/edit/index.php";
+// } else {
+?>
 <div class="card mt-5">
     <div class="card-header">
         <h6 class="m-0 font-weight-bold text-center">Detail Transaksi</h6>
@@ -17,7 +39,28 @@
                 </thead>
 
                 <tbody>
-                  
+                    <?php
+                    $result = $transactionDetail->index();
+                    $no = 1;
+                    // $invoiceNumber = '001';
+                    ?>
+                    <?php while ($row = $result->fetch_assoc()) : ?>
+                        <tr>
+                            <td><?php echo $no++; ?></td>
+                            <td><?php echo $row["itemName"]; ?></td>
+                            <td><?php echo $row["packageName"]; ?></td>
+                            <td><?php echo $row["quantity"]; ?></td>
+                            <td>
+                                <a href="?menu=transactionDetail&action=edit&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #466d1d">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="?menu=transactionDetail&action=delete&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #c01605" onclick="return confirm('Do you want to delete this?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                    <!--                   
                         <tr>
                         <td width="10">1</td>
                         <td width="10">SMM</td>
@@ -29,71 +72,19 @@
                                         <a href="?menu=transaction&action=delete&id=<?php echo $row['id']; ?>" class="btn" style="color: white; background: #c01605" onclick="return confirm('Do you want to delete this?')">
                                             <i class="fas fa-trash-alt"></i>
                                         </a></td>
-                        </tr>
-         
+                        </tr> -->
+
                 </tbody>
 
             </table>
-            <a href="#" class="btn btn-primary" id="showFormButton">
-                <i class="fas fa-plus"></i> Tambah
-            </a>
+            <a href="?menu=detail&action=add" class="btn" style="color: white; background: #15452f">
+                    <i class="fas fa-plus"></i> Tambah
+                </a>
         </div>
     </div>
 </div>
 
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Detail Transaksi</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form action="?menu=transaction&action=add" method="POST">
-                    <!-- Isi form sesuai kebutuhan -->
-                    <div class="form-group">
-                        <label>Nama Item:</label>
-                        <input type="text" class="form-control" name="business" placeholder="Masukkan Nama Item" required /> 
-                    </div>
-                    <div class="form-group">
-                        <label>Nama Paket:</label>
-                        <input type="text" class="form-control" name="business" placeholder="Masukkan Nama Paket" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Kuantitas:</label>
-                        <input type="number" class="form-control" name="business" placeholder="Masukkan Kuantitas" required />
-                    </div>
-                    <!-- Tambahkan input lainnya -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Masukkan semua link JavaScript yang diperlukan di sini -->
-
-<script>
-    // Ketika dokumen selesai dimuat, tambahkan event listener untuk menampilkan pop-up form ketika tombol ditekan
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("showFormButton").addEventListener("click", function() {
-            document.getElementById("myModal").style.display = "block";
-        });
-
-        // Sembunyikan pop-up form ketika tombol Close atau area luar pop-up form ditekan
-        document.querySelectorAll("[data-dismiss='modal']").forEach(function(element) {
-            element.addEventListener("click", function() {
-                document.getElementById("myModal").style.display = "none";
-            });
-        });
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("myModal")) {
-                document.getElementById("myModal").style.display = "none";
-            }
-        }
-    });
-</script>
+<?php
+}
+?>

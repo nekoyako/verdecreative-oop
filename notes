@@ -47,3 +47,13 @@ CREATE TABLE `transaction` (
     downPayment DECIMAL(14),
 PRIMARY KEY (id)
 );
+
+-- create table transactionDetail
+CREATE TABLE transactionDetail (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    transactionID INT(11) UNSIGNED,
+    itemName VARCHAR(50),
+    packageName VARCHAR(50),
+    quantity INT,
+    FOREIGN KEY (transactionID) REFERENCES transaction(id)
+);

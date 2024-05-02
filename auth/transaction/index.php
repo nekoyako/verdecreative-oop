@@ -42,6 +42,7 @@ if ($action == "add") {
                                 <th width="100">Tanggal Mulai</th>
                                 <th width="100">Tanggal Selesai</th>
                                 <th width="100">Tanggal Invoice</th>
+                                <th width="100">Tanggal Jatuh Tempo</th>
                                 <th width="100">Discount</th>
                                 <th width="100">Down Payment</th>
                                 <th width="100">Action</th>
@@ -59,11 +60,27 @@ if ($action == "add") {
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo $row["business"]; ?></td>
                                     <td><?php echo 'INVOICE #' . str_pad($invoiceNumber, 3, '0', STR_PAD_LEFT); ?></td>
-                                    <?php $invoiceNumber++; 
+                                    <?php $invoiceNumber++;
                                     ?>
                                     <td><?php echo $row["startDate"]; ?></td>
                                     <td><?php echo $row["endDate"]; ?></td>
                                     <td><?php echo $row["invoiceDate"]; ?></td>
+                                    <td><?php
+                                        // Ambil invoiceDate dari baris yang sedang diproses
+                                        $invoiceDate = $row["invoiceDate"];
+
+                                        // Konversi invoiceDate ke format timestamp menggunakan strtotime()
+                                        $invoiceTimestamp = strtotime($invoiceDate);
+
+                                        // Tambahkan 15 hari ke invoiceTimestamp
+                                        $dueTimestamp = strtotime('+15 days', $invoiceTimestamp);
+
+                                        // Konversi dueTimestamp ke format tanggal kembali menggunakan date()
+                                        $dueDate = date('Y-m-d', $dueTimestamp);
+
+                                        // Tampilkan dueDate pada tabel
+                                        echo $dueDate ;
+                                        ?></td>
                                     <td><?php echo $row["discount"]; ?></td>
                                     <td><?php echo $row["downPayment"]; ?></td>
 

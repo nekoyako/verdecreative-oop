@@ -45,11 +45,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="card-body"> -->
+                <div class="card-body">
                     <?php 
-                    // include "../transaction/detail/index.php"; 
+                    include "../transaction/detail/index.php"; 
                     ?>
-                <!-- </div> -->
+                </div>
             </div>
 
             <div class="card-footer">
@@ -64,3 +64,4 @@
 
     </div>
 </div>
+
