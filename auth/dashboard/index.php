@@ -117,7 +117,7 @@ include("../../php/config.php");
                 <div class="modal-body">Select "Log out" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn" type="button" data-dismiss="modal" style="color: white; background: grey">Cancel</button>
-                    <a class="btn" href="../php/logout.php" style="color: white; background: navy">Log out</a>
+                    <a class="btn" href="../../php/logout.php" style="color: white; background: navy">Log out</a>
                 </div>
             </div>
         </div>
