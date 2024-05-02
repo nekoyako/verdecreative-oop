@@ -34,7 +34,7 @@ if (isset($_POST['id'], $_POST['code'], $_POST['name'], $_POST['contactPerson'],
 
         if ($rowsAffected > 0) {
             // Redirect to client dashboard on successful update
-            $url = "/verdecreative-oop/auth/dashboard/?menu=client";
+            $url = "/auth/dashboard/?menu=client";
             $pesan = "Successfully Edited";
             echo "<script>alert('$pesan'); window.location='$url';</script>";
             exit; // Ensure to exit after redirection
