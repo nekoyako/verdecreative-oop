@@ -26,11 +26,7 @@ if ($stmt) {
     mysqli_stmt_close($stmt);
 
     // Redirect back to client dashboard after update
-<<<<<<< HEAD
-    $url = "/auth/dashboard/?menu=product";
-=======
     $url = "/auth/dashboard/?menu=user";
->>>>>>> 917f389fb9687cb5b3ebf2173f90e28bfa3e4b61
     $pesan = "Successfully Edited";
     echo "<script>alert('$pesan'); window.location='$url'; </script>";
 } else {
