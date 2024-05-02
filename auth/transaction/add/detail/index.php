@@ -77,7 +77,7 @@ if ($action == "add" && $detailAction == "add") {
                 </tbody>
 
             </table>
-            <a href="?menu=transactionDetail" class="btn" style="color: white; background: #15452f">
+            <a href="?menu=transactionDetail&id=2" class="btn" style="color: white; background: #15452f">
                     <i class="fas fa-plus"></i> Tambah
                 </a>
         </div>

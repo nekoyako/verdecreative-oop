@@ -45,11 +45,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <?php 
-                    include "../transaction/add/detail/index.php"; 
-                    ?>
+
+<!-- detail transaksi -->
+                <div class="card-body shadow mb-4" style="width: 40%; margin-left: 20px; border-radius: 10px">
+                    <div id="forms-container">
+                        <!-- <div>---</div> -->
+                        <div class="form-group">
+                            <label>Nama Item:</label>
+                            <input type="text" class="form-control" name="itemName[]" placeholder="Masukkan Nama Item" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Paket:</label>
+                            <input type="text" class="form-control" name="packageName[]" placeholder="Masukkan Nama Paket" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Kuantitas:</label>
+                            <input type="number" class="form-control" name="quantity[]" placeholder="Masukkan Kuantitas" required />
+                        </div>
+                    </div>
+                    <button type="button" id="add-form" class="btn btn-primary">Tambah</button>
                 </div>
+
+                <script>
+                    document.getElementById('add-form').addEventListener('click', function() {
+                        var formsContainer = document.getElementById('forms-container');
+                        var newForm = document.createElement('div');
+                        newForm.classList.add('form-group');
+                        newForm.innerHTML = `
+            <label>Nama Item:</label>
+            <input type="text" class="form-control" name="itemName[]" placeholder="Masukkan Nama Item" required />
+            <label>Nama Paket:</label>
+            <input type="text" class="form-control" name="packageName[]" placeholder="Masukkan Nama Paket" required />
+            <label>Kuantitas:</label>
+            <input type="number" class="form-control" name="quantity[]" placeholder="Masukkan Kuantitas" required />
+        `;
+                        formsContainer.appendChild(newForm);
+                    });
+                </script>
             </div>
 
             <div class="card-footer">
@@ -64,4 +96,3 @@
 
     </div>
 </div>
-

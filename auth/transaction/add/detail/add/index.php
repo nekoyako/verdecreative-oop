@@ -11,7 +11,7 @@
         </div>
         <form action="/auth/transaction/add/detail/add/store.php" method="POST" enctype="multipart/form-data">
             <div>
-                <div class="card-body" style="display: flex;">
+                <div class="card-body">
                     <div class="form-group">
                         <label>Nama Item:</label>
                         <input type="text" class="form-control" name="business" placeholder="Masukkan Nama Item" required />
