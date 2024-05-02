@@ -47,7 +47,7 @@
                 </div>
                 <div class="card-body">
                     <?php 
-                    include "../transaction/detail/index.php"; 
+                    include "../transaction/add/detail/index.php"; 
                     ?>
                 </div>
             </div>

@@ -4,21 +4,21 @@ include("../models/TransactionDetail.php");
 
 $transactionDetail = new TransactionDetail($conn);
 
-$action = isset($_GET['action']) ? $_GET['action'] : "";
-if ($action == "add") {
-    include "add/index.php";
-} else if ($action == "edit") {
-    include "edit/index.php";
-} else {
-
 // $action = isset($_GET['action']) ? $_GET['action'] : "";
-// $detailAction = isset($_GET['detail']) ? $_GET['detail'] : "";
-
-// if ($action == "add" && $detailAction == "add") {
-//     include "../detail/add/index.php";
-// } else if ($action == "edit" && $detailAction == "edit") {
-//     include "../detail/edit/index.php";
+// if ($action == "add") {
+//     include "add/index.php";
+// } else if ($action == "edit") {
+//     include "edit/index.php";
 // } else {
+
+$action = isset($_GET['action']) ? $_GET['action'] : "";
+$detailAction = isset($_GET['detail']) ? $_GET['detail'] : "";
+
+if ($action == "add" && $detailAction == "add") {
+    include "../detail/add/index.php";
+} else if ($action == "edit" && $detailAction == "edit") {
+    include "../detail/edit/index.php";
+} else {
 ?>
 <div class="card mt-5">
     <div class="card-header">
@@ -77,7 +77,7 @@ if ($action == "add") {
                 </tbody>
 
             </table>
-            <a href="?menu=detail&action=add" class="btn" style="color: white; background: #15452f">
+            <a href="?menu=transactionDetail" class="btn" style="color: white; background: #15452f">
                     <i class="fas fa-plus"></i> Tambah
                 </a>
         </div>

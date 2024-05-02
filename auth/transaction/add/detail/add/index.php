@@ -9,7 +9,7 @@
                 Form Tambah Data Transaksi
             </h6>
         </div>
-        <form action="/auth/transaction/detail/add/store.php" method="POST" enctype="multipart/form-data">
+        <form action="/auth/transaction/add/detail/add/store.php" method="POST" enctype="multipart/form-data">
             <div>
                 <div class="card-body" style="display: flex;">
                     <div class="form-group">

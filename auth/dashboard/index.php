@@ -71,6 +71,8 @@ include("../../php/config.php");
                     include "../product/index.php";
                 } else if ($menu == "transaction") {
                     include "../transaction/index.php";
+                } else if ($menu == "transactionDetail") {
+                    include "../transaction/add/detail/add/index.php";
                 } else {
                     include "blank_page.php";
                 }
