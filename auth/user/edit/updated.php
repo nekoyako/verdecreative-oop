@@ -23,7 +23,7 @@ if ($stmt) {
     mysqli_stmt_close($stmt);
 
     // Redirect back to client dashboard after update
-    $url = "/auth/dashboard/?menu=user";
+    $url = "http://localhost/verdecreative-oop/auth/dashboard/?menu=user";
     $pesan = "Successfully Edited";
     echo "<script>alert('$pesan'); window.location='$url'; </script>";
 } else {
