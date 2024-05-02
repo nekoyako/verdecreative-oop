@@ -26,7 +26,7 @@ if(isset($_GET['id'])) {
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-custom" style="color:black">Form Edit Pelanggan</h6>
         </div>
-        <form action="../user/edit/updated.php" method="POST"> 
+        <form action="/auth/user/edit/updated.php" method="POST"> 
             <div class="card-body">
                 <input type="hidden" name="id" value="<?php echo $userData['id']; ?>" />
                 <div class="form-group">

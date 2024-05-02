@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
         $deleteResult = $user->deleteUser($id);
         
         if ($deleteResult) {
-            $url = "index.php?menu=user";
+            $url = "/auth/dashboard/?menu=user";
             echo "<script>alert('User successfully deleted'); window.location='$url'; </script>";
             exit; // Stop further execution
         } else {
