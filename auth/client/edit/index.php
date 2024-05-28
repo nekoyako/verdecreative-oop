@@ -1,8 +1,5 @@
 <?php
 include("../../php/config.php");
-include("../models/Client.php");
-
-$client = new Client($conn);
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];

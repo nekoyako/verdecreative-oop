@@ -75,11 +75,10 @@ class Client
     $success = $stmt->execute();
 
     if (!$success) {
-        throw new Exception("Error deleting user: " . $stmt->error);
+        throw new Exception("Error deleting client: " . $stmt->error);
     }
 
     return $success;
 }
-
 }
 }

@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
         $deleteResult = $client->deleteClient($id);
         
         if ($deleteResult) {
-            $url = "index.php?menu=client";
+            $url = "/auth/dashboard/?menu=client";
             echo "<script>alert('Client successfully deleted'); window.location='$url'; </script>";
             exit; // Stop further execution
         } else {

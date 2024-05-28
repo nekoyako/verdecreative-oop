@@ -113,4 +113,22 @@ return $success;
 
         return $success;
     }
-}
+
+    public function deleteTransaction($id)
+    {
+        $query = "DELETE FROM transaction WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+    
+        if (!$stmt) {
+            throw new Exception("Error preparing query: " . $this->conn->error);
+        }
+    
+        $stmt->bind_param("i", $id);
+        $success = $stmt->execute();
+    
+        if (!$success) {
+            throw new Exception("Error deleting transaction: " . $stmt->error);
+        }
+    
+        return $success;
+    }}
