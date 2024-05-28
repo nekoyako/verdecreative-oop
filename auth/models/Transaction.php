@@ -96,7 +96,6 @@ return $success;
 
     public function update($updatedTransaction)
     {
-        // Update an existing user in the product table
         $query = "UPDATE transaction SET business = ?, startDate = ?, endDate = ?, invoiceDate = ?, discount = ?, downPayment = ?  WHERE id = ?";
         $stmt = $this->conn->prepare($query);
 
@@ -104,7 +103,7 @@ return $success;
             throw new Exception("Error preparing query: " . $this->conn->error);
         }
 
-        $stmt->bind_param("sssssssi", $updatedTransaction['business'], $updatedTransaction['startDate'], $updatedTransaction['endDate'], $updatedTransaction['invoiceDate'], $updatedTransaction['discount'], $updatedTransaction['downPayment']);
+        $stmt->bind_param("ssssssi", $updatedTransaction['business'], $updatedTransaction['startDate'], $updatedTransaction['endDate'], $updatedTransaction['invoiceDate'], $updatedTransaction['discount'], $updatedTransaction['downPayment']);
         $success = $stmt->execute();
 
         if (!$success) {
