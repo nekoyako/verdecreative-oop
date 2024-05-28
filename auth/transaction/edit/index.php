@@ -6,8 +6,8 @@ include("../../php/config.php");
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
-    $clientData = $client->getById($id);
-    if(!$clientData) {
+    $transactionData = $transaction->getById($id);
+    if(!$transactionData) {
         // Handle jika data tidak ditemukan
         echo "Data tidak ditemukan";
         exit;
@@ -23,39 +23,43 @@ if(isset($_GET['id'])) {
 
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-custom" style="color:black">Edit Data Pelanggan</h1>
+    <h1 class="h3 mb-2 text-custom" style="color:black">Edit Data Transaksi</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-custom" style="color:black">Form Edit Pelanggan</h6>
+            <h6 class="m-0 font-weight-bold text-custom" style="color:black">Form Edit Transaksi</h6>
         </div>
-        <form action="../client/edit/updated.php" method="POST"> 
+        <form action="../transaction/edit/updated.php" method="POST"> 
             <div class="card-body">
                 <div class="form-group">
-                    <label>Kode:</label>
-                    <input type="text" class="form-control" name="code" value="<?php echo $clientData['code']; ?>" required />
+                    <label>Nama Bisnis:</label>
+                    <input type="text" class="form-control" name="business" value="<?php echo $transactionData['business']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>Nama Perusahaan:</label>
-                    <input type="text" class="form-control" name="name" value="<?php echo $clientData['name']; ?>" required />
+                    <label>Tanggal Mulai:</label>
+                    <input type="date" class="form-control" name="startDate" value="<?php echo $transactionData['startDate']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>Nama Penanggung Jawab:</label>
-                    <input type="text" class="form-control" name="contactPerson" value="<?php echo $clientData['contactPerson']; ?>" required />
+                    <label>Tanggal Selesai:</label>
+                    <input type="date" class="form-control" name="endDate" value="<?php echo $transactionData['endDate']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>No Telepon:</label>
-                    <input type="number" class="form-control" name="phone" value="<?php echo $clientData['phone']; ?>" required />
+                    <label>Tanggal Invoice:</label>
+                    <input type="date" class="form-control" name="invoiceDate" value="<?php echo $transactionData['invoiceDate']; ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>Alamat:</label>
-                    <input type="text" class="form-control" name="address" value="<?php echo $clientData['address']; ?>" required />
+                    <label>Discount:</label>
+                    <input type="number" class="form-control" name="discount" value="<?php echo $transactionData['discount']; ?>" />
+                </div>
+                <div class="form-group">
+                    <label>Down Payment:</label>
+                    <input type="number" class="form-control" name="downPayment" value="<?php echo $transactionData['downPayment']; ?>" />
                 </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn" style="color: white; background: navy">
                     <i class="fas fa-save"></i> Simpan
                 </button>
-                <a href="../../auth/dashboard/?menu=client" class="btn" style="color: white; background: orange">
+                <a href="../../auth/dashboard/?menu=transaction" class="btn" style="color: white; background: orange">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>
