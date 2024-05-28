@@ -27,6 +27,7 @@ if(isset($_GET['id'])) {
         </div>
         <form action="/auth/client/edit/updated.php" method="POST"> 
             <div class="card-body">
+            <input type="hidden" name="id" value="<?php echo $clientData['id']; ?>" />
                 <div class="form-group">
                     <label>Kode:</label>
                     <input type="text" class="form-control" name="code" value="<?php echo $clientData['code']; ?>" required />
@@ -52,7 +53,7 @@ if(isset($_GET['id'])) {
                 <button type="submit" class="btn" style="color: white; background: navy">
                     <i class="fas fa-save"></i> Simpan
                 </button>
-                <a href="/auth/dashboard/?menu=client" class="btn" style="color: white; background: orange">
+                <a href="../../auth/dashboard/?menu=client" class="btn" style="color: white; background: orange">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>

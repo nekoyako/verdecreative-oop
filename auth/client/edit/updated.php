@@ -24,7 +24,6 @@ include("../../../php/config.php");
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "sssssi", $code, $name, $contactPerson, $phone, $address, $id);
         mysqli_stmt_execute($stmt);
-        $rowsAffected = mysqli_stmt_affected_rows($stmt);
         mysqli_stmt_close($stmt);
 
         // if ($rowsAffected > 0) {
