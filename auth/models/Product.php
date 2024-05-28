@@ -79,7 +79,7 @@ class Product
             throw new Exception("Error preparing query: " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssssi", $updatedProduct['item'], $updatedProduct['package'], $updatedProduct['price'], $updatedProduct['id']);
+        $stmt->bind_param("sssi", $updatedProduct['item'], $updatedProduct['package'], $updatedProduct['price'], $updatedProduct['id']);
         $success = $stmt->execute();
 
         if (!$success) {

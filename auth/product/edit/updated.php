@@ -20,12 +20,11 @@ if ($stmt) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    // Redirect back to client dashboard after update
     $url = "/auth/dashboard/?menu=product";
     $pesan = "Successfully Edited";
     echo "<script>alert('$pesan'); window.location='$url'; </script>";
+    
 } else {
-    // Handle error if prepare statement fails
     $pesan = "Failed to update data";
     echo "<script>alert('$pesan'); window.history.back(); </script>";
 }

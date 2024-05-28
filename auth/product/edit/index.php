@@ -1,24 +1,17 @@
 <?php
 include("../../php/config.php");
-// include("../models/Product.php");
-
-// $product = new Product($conn);
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
     $productData = $product->getById($id);
     if(!$productData) {
-        // Handle jika data tidak ditemukan
         echo "Data tidak ditemukan";
         exit;
     }
 } else {
-    // Handle jika parameter id tidak ada
     echo "ID tidak ditemukan";
     exit;
 }
-
-
 ?>
 
 <div class="container-fluid">
@@ -28,8 +21,9 @@ if(isset($_GET['id'])) {
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-custom" style="color:black">Form Edit Produk</h6>
         </div>
-        <form action="../product/edit/updated.php" method="POST"> 
+        <form action="/auth/product/edit/updated.php" method="POST"> 
             <div class="card-body">
+            <input type="hidden" name="id" value="<?php echo $productData['id']; ?>" />
                 <div class="form-group">
                     <label>Nama Item:</label>
                     <input type="text" class="form-control" name="item" value="<?php echo $productData['item']; ?>" required />
