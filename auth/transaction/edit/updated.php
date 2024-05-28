@@ -1,22 +1,23 @@
 <?php
 include "../../../php/config.php";
 $id = mysqli_real_escape_string($conn, $_POST['id']);
-$code = mysqli_real_escape_string($conn, $_POST['code']);
-$name = mysqli_real_escape_string($conn, $_POST['name']);
-$contactPerson = mysqli_real_escape_string($conn, $_POST['contactPerson']);
-$phone = mysqli_real_escape_string($conn, $_POST['phone']);
-$address = mysqli_real_escape_string($conn, $_POST['address']);
+$business = mysqli_real_escape_string($conn, $_POST['business']);
+$startDate = mysqli_real_escape_string($conn, $_POST['startDate']);
+$endDate = mysqli_real_escape_string($conn, $_POST['endDate']);
+$invoiceDate = mysqli_real_escape_string($conn, $_POST['invoiceDate']);
+$discount = mysqli_real_escape_string($conn, $_POST['discount']);
+$downPayment = mysqli_real_escape_string($conn, $_POST['downPayment']);
 
-$sql = "UPDATE client SET code='$code',
-								name='$name',
-								contactPerson='$contactPerson',
-								phone='$phone',
-								address='$address'
+$sql = "UPDATE transaction SET business='$business',
+								startDate='$startDate',
+								endDate='$endDate',
+								invoiceDate='$invoiceDate',
+								discount='$discount'
 								WHERE id='$id'";
 $query = mysqli_query($conn, $sql);
 
 
-$url = "/auth/dashboard/?menu=client";
+$url = "/auth/dashboard/?menu=transaction";
 $pesan = "Successfully Edited";
 
 echo "<script>alert('$pesan'); location='$url'; </script>";
